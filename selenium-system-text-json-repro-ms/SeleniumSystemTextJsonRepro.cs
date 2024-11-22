@@ -10,7 +10,7 @@ namespace selenium_system_text_json_repro_ms
 
 		private static string GetChromeExePath()
 		{
-			// assumes we're in selenium-system-text-json-repro/bin/debug/net80
+			// assumes we're in selenium-system-text-json-repro/bin/debug/net48
 			var chromeExe = Path.Combine(Environment.CurrentDirectory, @"..\..\..\..\ChromeForTesting\chrome-win64\chrome.exe");
 			if (!File.Exists(chromeExe))
 			{
