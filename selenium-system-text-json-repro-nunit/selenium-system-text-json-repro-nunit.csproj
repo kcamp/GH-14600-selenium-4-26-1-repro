@@ -8,7 +8,7 @@
     <LangVersion>10.0</LangVersion>
     <IsPackable>false</IsPackable>
     <OutputType>Library</OutputType>
-    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,5 +18,19 @@
     <PackageReference Include="Selenium.WebDriver" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" />
   </ItemGroup>
+
+  <!-- 
+    This forces the generation of assembly binding redirects 
+    for class libraries - see https://github.com/dotnet/msbuild/issues/1310
+  -->
+  <Target Name="ForceGenerationOfBindingRedirects"
+          AfterTargets="ResolveAssemblyReferences"
+          BeforeTargets="GenerateBindingRedirects"
+          Condition="'$(AutoGenerateBindingRedirects)' == 'true'">
+    <PropertyGroup>
+      <!-- Needs to be set in a target because it has to be set after the initial evaluation in the common targets -->
+      <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    </PropertyGroup>
+  </Target>
 
 </Project>
