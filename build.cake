@@ -16,6 +16,7 @@ Task("Build")
 
 Task("Test-VSTest")
 	.IsDependentOn("Build")
+	.ContinueOnError()
 	.Does(() => {
 		VSTest(
 			"./selenium-system-text-json-repro-ms/bin/Debug/net48/selenium-system-text-json-repro-ms.dll", 
@@ -26,10 +27,14 @@ Task("Test-VSTest")
 
 Task("Test-NUnit")
 	.IsDependentOn("Build")
+	.ContinueOnError()
 	.Does(() => {
 		NUnit3(
 			"./selenium-system-text-json-repro-nunit/bin/Debug/net48/selenium-system-text-json-repro-nunit.dll",
-			new NUnit3Settings ());
+			new NUnit3Settings {
+				// make this consistent with Visual Studio and use the output path as the working directory
+				WorkingDirectory = "./selenium-system-text-json-repro-nunit/bin/Debug/net48"
+			});
 	});
 
 Task("Run-All")
