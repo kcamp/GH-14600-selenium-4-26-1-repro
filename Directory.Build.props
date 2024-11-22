@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <NoWarn>1591</NoWarn>
+    <RestorePackagesPath>$(MSBuildThisFileDirectory)\.nuget</RestorePackagesPath>
+  </PropertyGroup>
+</Project>
