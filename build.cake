@@ -3,6 +3,7 @@
 
 var Configuration = "Debug";
 var SolutionPath = "./selenium-repro.sln";
+var Target = Argument("Target", "Run-All");
 
 Task("Build")
 	.Does(() => {
@@ -41,4 +42,6 @@ Task("Run-All")
 	.IsDependentOn("Test-VSTest")
 	.IsDependentOn("Test-NUnit");
 
-RunTarget("Run-All");
+
+
+RunTarget(Target);
