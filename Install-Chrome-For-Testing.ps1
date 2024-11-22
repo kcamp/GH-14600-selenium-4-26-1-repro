@@ -4,15 +4,15 @@ $ProgressPreference = 'SilentlyContinue'
 # Use the 131.0.6778.85 version
 $ChromeVersion = "131.0.6778.85"
 $DownloadUrl = "https://storage.googleapis.com/chrome-for-testing-public/$ChromeVersion/win64/chrome-win64.zip"
-$TargetPath = ".\chrome-win64-$ChromeVersion.zip"
-$InstallationPath = Join-Path "." "ChromeForTesting"
+$TargetPath = Join-Path $PSScriptRoot "chrome-win64-$ChromeVersion.zip"
+$InstallationPath = Join-Path $PSScriptRoot "ChromeForTesting"
 
 if(-not (Test-Path $InstallationPath))
 {
 	New-Item $InstallationPath -ItemType Directory | Out-Null
 }
 
-if(-not (Test-Path $InstallationPath)) 
+if(-not (Test-Path $TargetPath)) 
 {
 	Write-Host "Downloading $TargetPath from $DownloadUrl"
 	Invoke-WebRequest $DownloadUrl -OutFile $TargetPath

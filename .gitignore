@@ -36,3 +36,4 @@ ChromeForTesting/**
 
 # ignore Cake
 tools/**
+/chrome-win64-*.zip
